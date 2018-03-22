@@ -1,0 +1,28 @@
+<div class="layui-body">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px">
+        <legend>所有产品信息</legend>
+    </fieldset>
+    <table class="layui-table" lay-data="{height: 'full-200', url:'/dashboard/products', page:true, id:'customers'}" lay-filter="product">
+        <thead>
+        <tr>
+            <!--th lay-data="{type:'checkbox', fixed: 'left'}"></th-->
+            <th lay-data="{field:'id', width:80}">ID</th>
+            <th lay-data="{field:'count', width:80}">库存</th>
+            <th lay-data="{field:'name', width:80,edit: 'text'}">名称</th>
+            <th lay-data="{field:'detail', width:220,edit: 'text'}">细节</th>
+            <th lay-data="{field:'info', width:80,edit: 'text'}">信息</th>
+            <th lay-data="{field:'image', width:100}">图片</th>
+            <th lay-data="{field:'price', width:80,edit: 'text'}">价格</th>
+            <th lay-data="{field:'category', width:80,edit: 'text'}">种类</th>
+            <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+        </tr>
+        </thead>
+    </table>
+
+    <script type="text/html" id="barDemo">
+        <a id="choose" class="layui-btn layui-btn-primary layui-btn-xs" lay-event="save">保存</a>
+        <!--a class="layui-btn layui-btn-xs" lay-event="edit">选课</a-->
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+
+</div>

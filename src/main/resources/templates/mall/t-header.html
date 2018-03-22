@@ -1,0 +1,19 @@
+<div class="header_topw3layouts_bar">
+    <div class="container">
+        <div class="header_agileits_left">
+            <ul>
+                <li><i class="fa fa-phone" aria-hidden="true"></i> +(010) 221 918 811</li>
+                <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">info@example.com</a></li>
+            </ul>
+        </div>
+        <div class="header_right">
+            <#if user??>
+                <a href="#" class="log" data-toggle="modal" data-target="#myModal">${user.getName()}</a>
+                <#else>
+                    <a href="#" class="log" data-toggle="modal" data-target="#myModal">登录/注册</a>
+
+            </#if>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>

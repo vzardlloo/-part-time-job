@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>神龙销售管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="/static/dashboard/images/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="/dashboard/css/layui.css">
+    <link rel="stylesheet" href="/dashboard/css/golbal.css">
+    <script src="/dashboard/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="/dashboard/layui.js" type="text/javascript"></script>
+</head>
+<body class="layui-layout-body">
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<div class="layui-layout layui-layout-admin">
+
+    <#include "head.html"/>
+    <#include "side.html"/>
+    <#include "${body}.html"/>
+    <#include "foot.html"/>
+
+</div>
+
+
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+
+    //==========new customer JS=================//
+    layui.use(['form', 'layedit', 'laydate','jquery'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        var $ = layui.jquery;
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '至少得5个字符';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+            ,regPwd: function (value) {
+                var pwd = $("#password").val();
+                var regPwd = $("#password2").val();
+                if(pwd != regPwd){
+                    return "两次密码输入不一致!"
+                }
+            }
+
+        });
+
+        form.on('submit(new)',function (data) {
+            $.ajax({
+                type: 'POST',
+                url: "/dashboard/customers",
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: "application/json",
+                success: function () {
+                    layer.msg("新建成功！", {icon: 6},function () {
+                        refresh();
+                    })
+                },
+                error: function () {
+                    layer.msg("新建失败！", {icon: 5})
+                }
+
+
+            });
+
+            return false;
+        });
+
+    });
+
+
+    //===========all customer JS================//
+    layui.use(['table', 'jquery','form'], function () {
+        var table = layui.table;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function (obj) {
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+
+            var data = obj.data;
+            if (obj.event === 'save') {
+                console.log(data);
+                //layer.msg('ID：'+ data.id + ' 的查看操作');
+                //var data2 = {"courseNum": data.number, "number": data.studentNumber, "courseName": data.name}
+                $.ajax({
+                    type: 'POST',
+                    url: '/dashboard/customers',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    contentType: "application/json",
+                    success: function () {
+                        layer.msg("保存成功！", {icon: 6}, function () {
+                            refresh();
+                        })
+
+                    },
+                    error: function () {
+                        layer.msg("保存失败！", {icon: 5})
+                    }
+                })
+
+            } else if (obj.event === 'del') {
+                layer.confirm("确定删除？", function (index) {
+                    console.log(data);
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/dashboard/customers',
+                        data: JSON.stringify(data),
+                        dataType: 'json',
+                        contentType: "application/json",
+                        success: function (res) {
+                            layer.msg("删除成功！", {icon: 6}, function () {
+                                refresh();
+                            })
+                        },
+                        error: function (res) {
+                            layer.msg("删除失败", {icon: 5})
+                        },
+                    })
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data.name))
+            }
+        });
+
+
+    })
+
+
+
+    //============upload product image JS================//
+    layui.use('upload', function() {
+            var $ = layui.jquery
+                , upload = layui.upload;
+
+            var domain = window.location.host;
+        //拖拽上传
+        upload.render({
+            elem: '#upload'
+            ,url: domain +'/dashboard/upload/'
+            ,type:"file"
+            ,method:'POST'
+            ,done: function(res){
+                //假设code=0代表上传成功
+                if(res.code == 0){
+                    layer.msg("上传成功！", {icon: 6})}
+            }
+        });
+
+        }
+    )
+
+    //============all product JS===============//
+    layui.use(['table', 'jquery','form'], function () {
+        var table = layui.table;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+
+        //监听表格复选框选择
+        table.on('checkbox(product)', function (obj) {
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(product)', function (obj) {
+
+            var data = obj.data;
+            if (obj.event === 'save') {
+                console.log(data);
+                //layer.msg('ID：'+ data.id + ' 的查看操作');
+                //var data2 = {"courseNum": data.number, "number": data.studentNumber, "courseName": data.name}
+                $.ajax({
+                    type: 'POST',
+                    url: '/dashboard/products',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    contentType: "application/json",
+                    success: function () {
+                        layer.msg("保存成功！", {icon: 6}, function () {
+                            refresh();
+                        })
+
+                    },
+                    error: function () {
+                        layer.msg("保存失败！", {icon: 5})
+                    }
+                })
+
+            } else if (obj.event === 'del') {
+                layer.confirm("确定删除？", function (index) {
+                    console.log(data);
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/dashboard/products',
+                        data: JSON.stringify(data),
+                        dataType: 'json',
+                        contentType: "application/json",
+                        success: function (res) {
+                            layer.msg("删除成功！", {icon: 6}, function () {
+                                refresh();
+                            })
+                        },
+                        error: function (res) {
+                            layer.msg("删除失败", {icon: 5})
+                        },
+                    })
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data.name))
+            }
+        });
+
+
+    })
+
+
+    //============ new product JS=============//
+    layui.use(['form', 'layedit', 'laydate','jquery'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        var $ = layui.jquery;
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        form.on('submit(*)',function (data) {
+            $.ajax({
+                type: 'POST',
+                url: "/dashboard/products",
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: "application/json",
+                success: function () {
+                    layer.msg("新建成功！", {icon: 6},function () {
+                        refresh();
+                    })
+                },
+                error: function () {
+                    layer.msg("新建失败！", {icon: 5})
+                }
+
+
+            });
+
+            return false;
+        });
+
+    });
+
+
+    //刷新
+    function refresh() {
+        window.location.reload();
+    }
+
+
+
+</script>
+
+</body>
+</html>
