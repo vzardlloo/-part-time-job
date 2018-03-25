@@ -2,10 +2,7 @@ package com.mall.zhangheng.domain;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -14,13 +11,26 @@ public class ShoppingCar {
 
     @Id
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     Integer id;
 
     @Column
-    Integer cid;
+    String cid;
 
     @Column
-    Integer pid;
+    String pid;
 
+    @Column
+    String cname;
+
+    @Column
+    String pname;
+
+    @Column
+    String value;
+
+    @Column
+    String payment;
 
 }

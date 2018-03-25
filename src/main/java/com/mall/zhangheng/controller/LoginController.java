@@ -5,6 +5,7 @@ import com.mall.zhangheng.domain.User;
 import com.mall.zhangheng.dto.UserLoginParam;
 import com.mall.zhangheng.exception.ErrorException;
 import com.mall.zhangheng.service.UserService;
+import org.apache.catalina.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,12 @@ public class LoginController {
     }
 
 
-
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "dashboard/login";
+    }
 
 
     @RequestMapping("/captcha")

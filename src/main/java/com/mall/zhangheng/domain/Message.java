@@ -4,21 +4,21 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Data
-@Table(name = "users")
+@Table(name = "message")
 @Entity
-public class User {
+@Data
+public class Message {
 
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
     @Column
-    String  name;
+    String title;
+
     @Column
-    String  password;
-    @Column
-    String  email;
+    String content;
 
 
 }

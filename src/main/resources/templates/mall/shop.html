@@ -35,10 +35,17 @@
 	<!-- // Font-awesome-css -->
 	<!--// Styleshets -->
 
+	<!-- layui --->
+	<link rel="stylesheet" href="/dashboard/css/layui.css">
+	<link rel="stylesheet" href="/dashboard/css/golbal.css">
+	<script src="/dashboard/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="/dashboard/layui.js" type="text/javascript"></script>
+
 	<!-- Online-fonts -->
 	<link href="http://fonts.googleapis.com/css?family=Montserrat:300,500,600,700,800" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 	<!--// Online-fonts -->
+
 
 </head>
 
@@ -88,10 +95,10 @@
 		<div class="inner_breadcrumb">
 			<ul class="short_ls">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="/mall">首页</a>
 					<span>| |</span>
 				</li>
-				<li>Shop</li>
+				<li>商店</li>
 			</ul>
 		</div>
 	</div>
@@ -100,299 +107,50 @@
 	<div class="innerf-pages">
 		<div class="container">
 			<!-- product right -->
-			<div class="left-ads-display col-md-9">
+			<div class="left-ads-display col-md-12">
 				<div class="wrapper_top_shop">
-					<div class="shop-f-top">
-						<img src="/mall/images/shop.jpg" alt="">
-					</div>
-					<div class="clearfix"></div>
+
 					<!-- product-sec1 -->
+
 					<div class="product-sec1">
 						<!--/mens-->
-						<div class="col-md-4 product-men">
-							<div class="product-edu-info edu">
-								<div class="thumbnail">
-									<a href="shop_single.html"><img src="/mall/images/mf1.jpg" alt=""></a>
-									<p><span class="fa fa-hand-o-down" aria-hidden="true"></span>Course Name</p>
-								</div>
-								<div class="caption">
-									<h4>Description About Study Material</h4>
-									<p>Clayton Barton</p>
-									<div class="matrlf-mid">
-										<h6><span>$</span> 100.00</h6>
-										<ul class="rating">
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-										</ul>
-										<div class="clearfix"> </div>
+						<#list product as p>
+							<div class="col-md-4 product-men">
+								<div class="product-edu-info edu">
+									<div class="thumbnail">
+										<a href="shop_single.html"><img src="/mall/images/mf1.jpg" alt=""></a>
+										<p><span class="fa fa-hand-o-down" aria-hidden="true"></span>商品简介</p>
 									</div>
-									<form action="#" method="post">
-										<input type="hidden" name="cmd" value="_cart">
-										<input type="hidden" name="add" value="1">
-										<input type="hidden" name="edu_item" value="Book1">
-										<input type="hidden" name="amount" value="100.00">
-										<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-										<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-									</form>
+									<div class="caption">
+										<h4>${p.getName()}</h4>
+										<p>${p.getInfo()}</p>
+										<div class="matrlf-mid">
+											<h6><span>￥</span>${p.getPrice()}</h6>
+											<ul class="rating">
+												<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
+												<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
+												<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
+												<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
+												<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
+											</ul>
+											<div class="clearfix"> </div>
+										</div>
+										<form action="${request.contextPath}/car" method="post">
+											<input type="hidden" name="cid" value="${user.getId()}">
+											<input type="hidden" name="pid" value="${p.getId()}">
+											<input type="hidden" name="cname" value="${user.getName()}">
+											<input type="hidden" name="pname" value="${p.getName()}">
+											<input type="hidden" name="value" value="${p.getPrice()}">
+											<input type="hidden" name="payment" value="未支付">
+											<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus"
+																								aria-hidden="true"></i>加入购物车
+											</button>
+										</form>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-4 product-men">
-							<div class="product-edu-info edu">
-								<div class="thumbnail">
-									<a href="shop_single.html"><img src="/mall/images/mf2.jpg" alt=""></a>
-									<p><span class="fa fa-hand-o-down" aria-hidden="true"></span>Course Name</p>
-								</div>
-								<div class="caption">
-									<h4>Description About Study Material</h4>
-									<p>Niel Fontine</p>
-									<div class="matrlf-mid">
-										<h6><span>$</span> 80.00</h6>
-										<ul class="rating">
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-										</ul>
-										<div class="clearfix"> </div>
-									</div>
-									<form action="#" method="post">
-										<input type="hidden" name="cmd" value="_cart">
-										<input type="hidden" name="add" value="1">
-										<input type="hidden" name="edu_item" value="Book2">
-										<input type="hidden" name="amount" value="80.00">
-										<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-										<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 product-men">
-							<div class="product-edu-info edu">
-								<div class="thumbnail">
-									<a href="shop_single.html"><img src="/mall/images/mf3.jpg" alt=""></a>
-									<p><span class="fa fa-hand-o-down" aria-hidden="true"></span>Course Name</p>
-								</div>
-								<div class="caption">
-									<h4>Description About Study Material</h4>
-									<p>Jose portilla</p>
-									<div class="matrlf-mid">
-										<h6><span>$</span> 30.00</h6>
-										<ul class="rating">
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-										</ul>
-										<div class="clearfix"> </div>
-									</div>
-									<form action="#" method="post">
-										<input type="hidden" name="cmd" value="_cart">
-										<input type="hidden" name="add" value="1">
-										<input type="hidden" name="edu_item" value="Book3">
-										<input type="hidden" name="amount" value="30.00">
-										<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-										<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-									</form>
-								</div>
-							</div>
-						</div>
-						<!-- //mens -->
-						<!-- /womens -->
-						<div class="col-md-4 product-men women_two">
-							<div class="product-edu-info edu">
-								<div class="thumbnail">
-									<a href="shop_single.html"><img src="/mall/images/mf4.jpg" alt=""></a>
-									<p><span class="fa fa-hand-o-down" aria-hidden="true"></span>Course Name</p>
-								</div>
-								<div class="caption">
-									<h4>Description About Study Material</h4>
-									<p>Chris Haroun</p>
-									<div class="matrlf-mid">
-										<h6><span>$</span> 60.00</h6>
-										<ul class="rating">
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-										</ul>
-										<div class="clearfix"> </div>
-									</div>
-									<form action="#" method="post">
-										<input type="hidden" name="cmd" value="_cart">
-										<input type="hidden" name="add" value="1">
-										<input type="hidden" name="edu_item" value="Book4">
-										<input type="hidden" name="amount" value="60.00">
-										<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-										<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 product-men women_two">
-							<div class="product-edu-info edu">
-								<div class="thumbnail">
-									<a href="shop_single.html"><img src="/mall/images/mf5.jpg" alt=""></a>
-									<p><span class="fa fa-hand-o-down" aria-hidden="true"></span>Course Name</p>
-								</div>
-								<div class="caption">
-									<h4>Description About Study Material</h4>
-									<p>Alex Even</p>
-									<div class="matrlf-mid">
-										<h6><span>$</span> 80.00</h6>
-										<ul class="rating">
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-										</ul>
-										<div class="clearfix"> </div>
-									</div>
-									<form action="#" method="post">
-										<input type="hidden" name="cmd" value="_cart">
-										<input type="hidden" name="add" value="1">
-										<input type="hidden" name="edu_item" value="Book5">
-										<input type="hidden" name="amount" value="80.00">
-										<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-										<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 product-men women_two">
-							<div class="product-edu-info edu">
-								<div class="thumbnail">
-									<a href="shop_single.html"><img src="/mall/images/mf6.jpg" alt=""></a>
-									<p><span class="fa fa-hand-o-down" aria-hidden="true"></span>Course Name</p>
-								</div>
-								<div class="caption">
-									<h4>Description About Study Material</h4>
-									<p>Hadilen de</p>
-									<div class="matrlf-mid">
-										<h6><span>$</span> 60.00</h6>
-										<ul class="rating">
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-										</ul>
-										<div class="clearfix"> </div>
-									</div>
-									<form action="#" method="post">
-										<input type="hidden" name="cmd" value="_cart">
-										<input type="hidden" name="add" value="1">
-										<input type="hidden" name="edu_item" value="Book6">
-										<input type="hidden" name="amount" value="60.00">
-										<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-										<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-									</form>
-								</div>
-							</div>
-						</div>
-						<!-- //womens -->
-						<!-- /mens -->
-						<div class="col-md-4 product-men">
-							<div class="product-edu-info edu">
-								<div class="thumbnail">
-									<a href="shop_single.html"><img src="/mall/images/mf1.jpg" alt=""></a>
-									<p><span class="fa fa-hand-o-down" aria-hidden="true"></span>Course Name</p>
-								</div>
-								<div class="caption">
-									<h4>Description About Study Material</h4>
-									<p>Clayton</p>
-									<div class="matrlf-mid">
-										<h6><span>$</span> 70.00</h6>
-										<ul class="rating">
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-										</ul>
-										<div class="clearfix"> </div>
-									</div>
-									<form action="#" method="post">
-										<input type="hidden" name="cmd" value="_cart">
-										<input type="hidden" name="add" value="1">
-										<input type="hidden" name="edu_item" value="Book7">
-										<input type="hidden" name="amount" value="70.00">
-										<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-										<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 product-men">
-							<div class="product-edu-info edu">
-								<div class="thumbnail">
-									<a href="shop_single.html"><img src="/mall/images/mf2.jpg" alt=""></a>
-									<p><span class="fa fa-hand-o-down" aria-hidden="true"></span>Course Name</p>
-								</div>
-								<div class="caption">
-									<h4>Description About Study Material</h4>
-									<p>Scott Harris</p>
-									<div class="matrlf-mid">
-										<h6><span>$</span> 50.00</h6>
-										<ul class="rating">
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star gray-star" aria-hidden="true"></span></a></li>
-										</ul>
-										<div class="clearfix"> </div>
-									</div>
-									<form action="#" method="post">
-										<input type="hidden" name="cmd" value="_cart">
-										<input type="hidden" name="add" value="1">
-										<input type="hidden" name="edu_item" value="Book8">
-										<input type="hidden" name="amount" value="50.00">
-										<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-										<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 product-men">
-							<div class="product-edu-info edu">
-								<div class="thumbnail">
-									<a href="shop_single.html"><img src="/mall/images/mf3.jpg" alt=""></a>
-									<p><span class="fa fa-hand-o-down" aria-hidden="true"></span>Course Name</p>
-								</div>
-								<div class="caption">
-									<h4>Description About Study Material</h4>
-									<p>Cordebard</p>
-									<div class="matrlf-mid">
-										<h6><span>$</span> 90.00</h6>
-										<ul class="rating">
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-											<li><a href="#"><span class="fa fa-star yellow-star" aria-hidden="true"></span></a></li>
-										</ul>
-										<div class="clearfix"> </div>
-									</div>
-									<form action="#" method="post">
-										<input type="hidden" name="cmd" value="_cart">
-										<input type="hidden" name="add" value="1">
-										<input type="hidden" name="edu_item" value="Book9">
-										<input type="hidden" name="amount" value="90.00">
-										<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-										<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-									</form>
-								</div>
-							</div>
-						</div>
-						<!-- //mens -->
+						</#list>
+
 						<div class="clearfix"></div>
 
 					</div>
@@ -402,187 +160,187 @@
 				</div>
 			</div>
 			<!-- product left -->
-			<div class="side-bar col-md-3">
-				<div class="search-hotel">
-					<h3 class="shopf-sear-headits-sear-head">Search Here..</h3>
-					<form action="#" method="post">
-						<input type="search" placeholder="Book name..." name="search" required="">
-						<input type="submit" value="Search">
-					</form>
-				</div>
-				<!-- price range -->
-				<div class="range">
-					<h3 class="shopf-sear-headits-sear-head">Price range</h3>
-					<ul class="dropdown-menu6">
-						<li>
+			<!--<div class="side-bar col-md-3">-->
+			<!--<div class="search-hotel">-->
+			<!--<h3 class="shopf-sear-headits-sear-head">Search Here..</h3>-->
+			<!--<form action="#" method="post">-->
+			<!--<input type="search" placeholder="Book name..." name="search" required="">-->
+			<!--<input type="submit" value="Search">-->
+			<!--</form>-->
+			<!--</div>-->
+			<!--&lt;!&ndash; price range &ndash;&gt;-->
+			<!--<div class="range">-->
+			<!--<h3 class="shopf-sear-headits-sear-head">Price range</h3>-->
+			<!--<ul class="dropdown-menu6">-->
+			<!--<li>-->
 
-							<div id="slider-range"></div>
-							<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
-						</li>
-					</ul>
-				</div>
-				<!-- //price range -->
-				<!--preference -->
-				<div class="left-side">
-					<h3 class="shopf-sear-headits-sear-head">Deal Offer On</h3>
-					<ul>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Marketing</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">Business</span>
-						</li>
+			<!--<div id="slider-range"></div>-->
+			<!--<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />-->
+			<!--</li>-->
+			<!--</ul>-->
+			<!--</div>-->
+			<!--&lt;!&ndash; //price range &ndash;&gt;-->
+			<!--&lt;!&ndash;preference &ndash;&gt;-->
+			<!--<div class="left-side">-->
+			<!--<h3 class="shopf-sear-headits-sear-head">Deal Offer On</h3>-->
+			<!--<ul>-->
+			<!--<li>-->
+			<!--<input type="checkbox" class="checked">-->
+			<!--<span class="span">Marketing</span>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<input type="checkbox" class="checked">-->
+			<!--<span class="span">Business</span>-->
+			<!--</li>-->
 
-					</ul>
-				</div>
-				<!-- // preference -->
-				<!-- discounts -->
-				<div class="left-side">
-					<h3 class="shopf-sear-headits-sear-head">Discount</h3>
-					<ul>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">5% or More</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">10% or More</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">20% or More</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">30% or More</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">50% or More</span>
-						</li>
-						<li>
-							<input type="checkbox" class="checked">
-							<span class="span">60% or More</span>
-						</li>
-					</ul>
-				</div>
-				<!-- //discounts -->
-				<!-- reviews -->
-				<div class="customer-rev left-side">
-					<h3 class="shopf-sear-headits-sear-head">Customer Review</h3>
-					<ul>
-						<li>
-							<a href="#">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<span>5.0</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star-o" aria-hidden="true"></i>
-								<span>4.0</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star-half-o" aria-hidden="true"></i>
-								<i class="fa fa-star-o" aria-hidden="true"></i>
-								<span>3.5</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star-o" aria-hidden="true"></i>
-								<i class="fa fa-star-o" aria-hidden="true"></i>
-								<span>3.0</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star-half-o" aria-hidden="true"></i>
-								<i class="fa fa-star-o" aria-hidden="true"></i>
-								<i class="fa fa-star-o" aria-hidden="true"></i>
-								<span>2.5</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<!-- //reviews -->
-				<!-- deals -->
-				<div class="deal-leftmk left-side">
-					<h3 class="shopf-sear-headits-sear-head">Special Deals</h3>
-					<div class="special-sec1">
-						<div class="col-xs-4 img-deals">
-							<img src="/mall/images/mf1.jpg" alt="">
-						</div>
-						<div class="col-xs-8 img-deal1">
-							<h3>Lorem ipsum</h3>
-							<a href="shop_single.html">$180.00</a>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="special-sec1">
-						<div class="col-xs-4 img-deals">
-							<img src="/mall/images/mf2.jpg" alt="">
-						</div>
-						<div class="col-xs-8 img-deal1">
-							<h3>Consectetur</h3>
-							<a href="shop_single.html">$99.00</a>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="special-sec1">
-						<div class="col-xs-4 img-deals">
-							<img src="/mall/images/mf3.jpg" alt="">
-						</div>
-						<div class="col-xs-8 img-deal1">
-							<h3>Adipiscing elit</h3>
-							<a href="shop_single.html">$165.00</a>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="special-sec1">
-						<div class="col-xs-4 img-deals">
-							<img src="/mall/images/mf5.jpg" alt="">
-						</div>
-						<div class="col-xs-8 img-deal1">
-							<h3>Mauris ac</h3>
-							<a href="shop_single.html">$225.00</a>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="special-sec1">
-						<div class="col-xs-4 img-deals">
-							<img src="/mall/images/mf6.jpg" alt="">
-						</div>
-						<div class="col-xs-8 img-deal1">
-							<h3>Interdum risus</h3>
-							<a href="shop_single.html">$169.00</a>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<!-- //deals -->
+			<!--</ul>-->
+			<!--</div>-->
+			<!--&lt;!&ndash; // preference &ndash;&gt;-->
+			<!--&lt;!&ndash; discounts &ndash;&gt;-->
+			<!--<div class="left-side">-->
+			<!--<h3 class="shopf-sear-headits-sear-head">Discount</h3>-->
+			<!--<ul>-->
+			<!--<li>-->
+			<!--<input type="checkbox" class="checked">-->
+			<!--<span class="span">5% or More</span>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<input type="checkbox" class="checked">-->
+			<!--<span class="span">10% or More</span>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<input type="checkbox" class="checked">-->
+			<!--<span class="span">20% or More</span>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<input type="checkbox" class="checked">-->
+			<!--<span class="span">30% or More</span>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<input type="checkbox" class="checked">-->
+			<!--<span class="span">50% or More</span>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<input type="checkbox" class="checked">-->
+			<!--<span class="span">60% or More</span>-->
+			<!--</li>-->
+			<!--</ul>-->
+			<!--</div>-->
+			<!--&lt;!&ndash; //discounts &ndash;&gt;-->
+			<!--&lt;!&ndash; reviews &ndash;&gt;-->
+			<!--<div class="customer-rev left-side">-->
+			<!--<h3 class="shopf-sear-headits-sear-head">Customer Review</h3>-->
+			<!--<ul>-->
+			<!--<li>-->
+			<!--<a href="#">-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<span>5.0</span>-->
+			<!--</a>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<a href="#">-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star-o" aria-hidden="true"></i>-->
+			<!--<span>4.0</span>-->
+			<!--</a>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<a href="#">-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star-half-o" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star-o" aria-hidden="true"></i>-->
+			<!--<span>3.5</span>-->
+			<!--</a>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<a href="#">-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star-o" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star-o" aria-hidden="true"></i>-->
+			<!--<span>3.0</span>-->
+			<!--</a>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<a href="#">-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star-half-o" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star-o" aria-hidden="true"></i>-->
+			<!--<i class="fa fa-star-o" aria-hidden="true"></i>-->
+			<!--<span>2.5</span>-->
+			<!--</a>-->
+			<!--</li>-->
+			<!--</ul>-->
+			<!--</div>-->
+			<!--&lt;!&ndash; //reviews &ndash;&gt;-->
+			<!--&lt;!&ndash; deals &ndash;&gt;-->
+			<!--<div class="deal-leftmk left-side">-->
+			<!--<h3 class="shopf-sear-headits-sear-head">Special Deals</h3>-->
+			<!--<div class="special-sec1">-->
+			<!--<div class="col-xs-4 img-deals">-->
+			<!--<img src="/mall/images/mf1.jpg" alt="">-->
+			<!--</div>-->
+			<!--<div class="col-xs-8 img-deal1">-->
+			<!--<h3>Lorem ipsum</h3>-->
+			<!--<a href="shop_single.html">$180.00</a>-->
+			<!--</div>-->
+			<!--<div class="clearfix"></div>-->
+			<!--</div>-->
+			<!--<div class="special-sec1">-->
+			<!--<div class="col-xs-4 img-deals">-->
+			<!--<img src="/mall/images/mf2.jpg" alt="">-->
+			<!--</div>-->
+			<!--<div class="col-xs-8 img-deal1">-->
+			<!--<h3>Consectetur</h3>-->
+			<!--<a href="shop_single.html">$99.00</a>-->
+			<!--</div>-->
+			<!--<div class="clearfix"></div>-->
+			<!--</div>-->
+			<!--<div class="special-sec1">-->
+			<!--<div class="col-xs-4 img-deals">-->
+			<!--<img src="/mall/images/mf3.jpg" alt="">-->
+			<!--</div>-->
+			<!--<div class="col-xs-8 img-deal1">-->
+			<!--<h3>Adipiscing elit</h3>-->
+			<!--<a href="shop_single.html">$165.00</a>-->
+			<!--</div>-->
+			<!--<div class="clearfix"></div>-->
+			<!--</div>-->
+			<!--<div class="special-sec1">-->
+			<!--<div class="col-xs-4 img-deals">-->
+			<!--<img src="/mall/images/mf5.jpg" alt="">-->
+			<!--</div>-->
+			<!--<div class="col-xs-8 img-deal1">-->
+			<!--<h3>Mauris ac</h3>-->
+			<!--<a href="shop_single.html">$225.00</a>-->
+			<!--</div>-->
+			<!--<div class="clearfix"></div>-->
+			<!--</div>-->
+			<!--<div class="special-sec1">-->
+			<!--<div class="col-xs-4 img-deals">-->
+			<!--<img src="/mall/images/mf6.jpg" alt="">-->
+			<!--</div>-->
+			<!--<div class="col-xs-8 img-deal1">-->
+			<!--<h3>Interdum risus</h3>-->
+			<!--<a href="shop_single.html">$169.00</a>-->
+			<!--</div>-->
+			<!--<div class="clearfix"></div>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash; //deals &ndash;&gt;-->
 
-			</div>
+			<!--</div>-->
 			<!-- //product left -->
 
 			<div class="clearfix"></div>
@@ -592,18 +350,8 @@
 	<!--// Shop -->
 
 	<!-- Subscribe -->
-	<div class="wthree-subscribef-w3ls">
-		<div class="container">
-			<h3 class="tittlef-agileits-w3layouts white-clrf">Sign up for our Newsletter</h3>
-			<p class="white-clrf">Recieve our latest news straight to your inbox</p>
-			<div class="footer_w3layouts_gridf_right">
+	<!--div class="wthree-subscribef-w3ls"-->
 
-				<form action="#" method="post">
-					<input type="email" name="Email" placeholder="Email address..." required="">
-					<input type="submit" value="Submit">
-				</form>
-			</div>
-		</div>
 	</div>
 	<!--// Subscribe -->
 	<!-- footer -->
@@ -612,9 +360,28 @@
 
 	<!-- js -->
 
+
 	<!-- Common js -->
 	<script type="text/javascript" src="/mall/js/jquery-2.1.4.min.js"></script>
+	<!--script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script-->
 	<!--// Common js -->
+
+	<!-- add to shopping car -->
+	<!--<script>-->
+	<!--$('#b1').click(function () {-->
+	<!--$.ajax({-->
+	<!--type:'POST',-->
+	<!--dataType:'json',-->
+	<!--url:"dashboard/shopping-car",-->
+	<!--data:JSON.stringify($('#p1').serialize())-->
+	<!--}).done(function (res) {-->
+	<!--console.log("SUCCESS");-->
+	<!--})-->
+	<!--})-->
+	<!--</script>-->
+
+
+
 	<!-- cart-js -->
 	<script src="/mall/js/minicart.js"></script>
 	<script>
@@ -632,20 +399,21 @@
 	</script>
 	<!-- //cart-js -->
 	<!-- price range (top products) -->
-	<script src="/mall/js/jquery-ui.js"></script>
+	<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js"></script>
 	<script>
-		//<![CDATA[ 
+        //<![CDATA[
 		$(window).load(function () {
-			$("#slider-range").slider({
+
+            $("#slider-range").slider({
 				range: true,
 				min: 0,
 				max: 9000,
 				values: [50, 6000],
 				slide: function (event, ui) {
-					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                    $("#amount").val("￥" + ui.values[0] + " - ￥" + ui.values[1]);
 				}
 			});
-			$("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+            $("#amount").val("￥" + $("#slider-range").slider("values", 0) + " - ￥" + $("#slider-range").slider("values", 1));
 
 		}); //]]>
 	</script>

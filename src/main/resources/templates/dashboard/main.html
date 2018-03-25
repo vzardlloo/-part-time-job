@@ -243,6 +243,7 @@
     })
 
 
+
     //============ new product JS=============//
     layui.use(['form', 'layedit', 'laydate','jquery'], function(){
         var form = layui.form
@@ -280,7 +281,168 @@
     });
 
 
-    //刷新
+    //============ all order JS ===========
+    layui.use(['table', 'jquery', 'form'], function () {
+        var table = layui.table;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+
+        //监听表格复选框选择
+        table.on('checkbox(order)', function (obj) {
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(order)', function (obj) {
+
+            var data = obj.data;
+            var domain = window.location.host;
+            if (obj.event === 'save') {
+                console.log(data);
+                //layer.msg('ID：'+ data.id + ' 的查看操作');
+                //var data2 = {"courseNum": data.number, "number": data.studentNumber, "courseName": data.name}
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://' + domain + '/dashboard/orders',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    contentType: "application/json",
+                    success: function () {
+                        layer.msg("保存成功！", {icon: 6}, function () {
+                            refresh();
+                        })
+
+                    },
+                    error: function () {
+                        layer.msg("保存失败！", {icon: 5})
+                    }
+                })
+
+            } else if (obj.event === 'del') {
+                layer.confirm("确定删除？", function (index) {
+                    console.log(data);
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/dashboard/orders',
+                        data: JSON.stringify(data),
+                        dataType: 'json',
+                        contentType: "application/json",
+                        success: function (res) {
+                            layer.msg("删除成功！", {icon: 6}, function () {
+                                refresh();
+                            })
+                        },
+                        error: function (res) {
+                            layer.msg("删除失败", {icon: 5})
+                        },
+                    })
+                });
+            }
+        });
+
+
+    })
+
+
+    //============== all message JS ==========//
+    layui.use(['table', 'jquery', 'form'], function () {
+        var table = layui.table;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+
+        //监听表格复选框选择
+        table.on('checkbox(message)', function (obj) {
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(message)', function (obj) {
+
+            var data = obj.data;
+            var domain = window.location.host;
+            if (obj.event === 'save') {
+                console.log(data);
+                //layer.msg('ID：'+ data.id + ' 的查看操作');
+                //var data2 = {"courseNum": data.number, "number": data.studentNumber, "courseName": data.name}
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://' + domain + '/dashboard/message',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    contentType: "application/json",
+                    success: function () {
+                        layer.msg("保存成功！", {icon: 6}, function () {
+                            refresh();
+                        })
+
+                    },
+                    error: function () {
+                        layer.msg("保存失败！", {icon: 5})
+                    }
+                })
+
+            } else if (obj.event === 'del') {
+                layer.confirm("确定删除？", function (index) {
+                    console.log(data);
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/dashboard/message',
+                        data: JSON.stringify(data),
+                        dataType: 'json',
+                        contentType: "application/json",
+                        success: function (res) {
+                            layer.msg("删除成功！", {icon: 6}, function () {
+                                refresh();
+                            })
+                        },
+                        error: function (res) {
+                            layer.msg("删除失败", {icon: 5})
+                        },
+                    })
+                });
+            }
+        });
+
+
+    })
+
+
+    //============= new  message JS ==========//
+    layui.use(['form', 'layedit', 'laydate', 'jquery'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        var $ = layui.jquery;
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        form.on('submit(*)', function (data) {
+            $.ajax({
+                type: 'POST',
+                url: "/dashboard/message",
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: "application/json",
+                success: function () {
+                    layer.msg("新建成功！", {icon: 6}, function () {
+                        refresh();
+                    })
+                },
+                error: function () {
+                    layer.msg("新建失败！", {icon: 5})
+                }
+
+
+            });
+
+            return false;
+        });
+
+    });
+
+
+    //=========== 刷新 ==========
     function refresh() {
         window.location.reload();
     }
