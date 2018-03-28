@@ -35,7 +35,7 @@ public class MallController {
 
     @RequestMapping(value = "/mall",method = RequestMethod.GET)
     public ModelAndView mall(){
-        List<Product> productList = productService.getAllProducts();
+        List<Product> productList = productService.getProducts();
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -95,7 +95,7 @@ public class MallController {
         }
         System.out.println(newMassage.getTitle());
         Customer existCustomer = customerService.getCustomerByNameAndPassword(customer.getName(),customer.getPassword());
-        List<Product> productList = productService.getAllProducts();
+        List<Product> productList = productService.getProducts();
         session.setAttribute("products", productList);
         modelAndView.addObject("msg", newMassage);
         modelAndView.addObject("product", productList);
@@ -114,24 +114,40 @@ public class MallController {
     @RequestMapping(value = "/car", method = RequestMethod.POST)
     public ModelAndView shoppingCar(ShoppingCar shoppingCar, HttpServletRequest request) {
         ShoppingCar shoppingCar1 = shoppingCarService.saveOrder(shoppingCar);
+        //List<ShoppingCar> shoppingCarList = shoppingCarService.getOrderList();
+        //Customer user = (Customer) request.getSession().getAttribute("currentUser");
+        ModelAndView modelAndView = new ModelAndView("redirect:/checkout");
+        // modelAndView.addObject("orderList", shoppingCarList);
+        // if (user != null) {
+        // modelAndView.addObject("user", user);
+        // modelAndView.setViewName("/mall/checkout");
+        return modelAndView;
+        //} else {
+        //modelAndView.setViewName("mall/to-login");
+        //return modelAndView;
+        //l;}
+
+    }
+
+    @RequestMapping(value = "/checkout", method = RequestMethod.GET)
+    public ModelAndView checkOut(HttpServletRequest request) {
         List<ShoppingCar> shoppingCarList = shoppingCarService.getOrderList();
         Customer user = (Customer) request.getSession().getAttribute("currentUser");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("orderList", shoppingCarList);
         if (user != null) {
             modelAndView.addObject("user", user);
-            modelAndView.setViewName("/mall/shopping-car");
+            modelAndView.setViewName("/mall/checkout");
             return modelAndView;
         } else {
             modelAndView.setViewName("mall/to-login");
             return modelAndView;
         }
-
     }
 
     @RequestMapping(value = "/car", method = RequestMethod.GET)
     public String getShoppingCar() {
-        return "/mall/shopping-car";
+        return "/mall/checkout";
     }
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
@@ -144,15 +160,14 @@ public class MallController {
                 .build();
     }
 
-    @RequestMapping(value = "/pay", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseModel updateOrder(@RequestBody ShoppingCar shoppingCar) {
-        shoppingCar.setPayment("已支付");
+    @RequestMapping(value = "/pay", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView updateOrder(ShoppingCar shoppingCar) {
+        //shoppingCar.setPayment("已支付");
         ShoppingCar shoppingCar1 = shoppingCarRepository.saveAndFlush(shoppingCar);
-        return ResponseModel.builder()
-                .code(0)
-                .data(shoppingCar1)
-                .build();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("order", shoppingCar1);
+        modelAndView.setViewName("/mall/pay-success");
+        return modelAndView;
     }
 
 

@@ -1,0 +1,16 @@
+﻿body {
+}
+
+.product_box .product_list {
+    margin-bottom: 8px;
+}
+
+.product_box .product_yh {
+    background: #e5e5e5;
+    border-bottom: 1px solid #959595;
+    font-size: 0.8em;
+    text-align: right;
+    padding-left: 26px;
+    line-height: 250%;
+    color: #fe7777;
+}

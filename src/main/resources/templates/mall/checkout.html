@@ -44,7 +44,7 @@
 
 </head>
 
-<body>
+<body onload="refresh()">
 	<!-- header -->
     <div class="header-w3layouts" id="home">
 		<!-- header-top -->
@@ -54,7 +54,7 @@
 		<div class="header-middle">
 			<div class="container">
 				<div class="logof-w3-agile">
-                    <h3><a href="index.html">神龙商城</a></h3>
+					<h3><a href="/index">神龙商城</a></h3>
 				</div>
 				<div class="searchf-w3-agileits-headr">
 					<form action="#" method="post">
@@ -65,13 +65,13 @@
 					</form>
 				</div>
 				<div class="cart-mainf">
-					<div class="educart educart2 cart cart box_1">
-						<form action="#" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="display" value="1">
-							<button class="top_edu_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-						</form>
-					</div>
+					<!--<div class="educart educart2 cart cart box_1">-->
+					<!--<form action="#" method="post" class="last">-->
+					<!--<input type="hidden" name="cmd" value="_cart">-->
+					<!--<input type="hidden" name="display" value="1">-->
+					<!--<button class="top_edu_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>-->
+					<!--</form>-->
+					<!--</div>-->
 
 				</div>
 				<div class="clearfix"></div>
@@ -90,10 +90,10 @@
 		<div class="inner_breadcrumb">
 			<ul class="short_ls">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="index.html">首页</a>
 					<span>| |</span>
 				</li>
-				<li>Checkout</li>
+				<li>购物车</li>
 			</ul>
 		</div>
 	</div>
@@ -102,151 +102,124 @@
 	<div class="innerf-pages">
 		<div class="container">
 			<div class="privacy about">
-				<h3>Chec<span>kout</span></h3>
+
+				<h2>你好，${user.getName()}!,这是你的购物清单：</h2>
+				<br>
 
 				<div class="checkout-right">
-					<h4>Your shopping cart contains: <span>3 Products</span></h4>
+
 					<table class="timetable_sub">
 						<thead>
 							<tr>
-								<th>SL No.</th>
-								<th>Product</th>
-								<th>Quantity</th>
-								<th>Product Name</th>
+								<th>ID</th>
+								<th>客户名称</th>
+								<th>产品名称</th>
+								<th>产品价格</th>
+								<!--<th>Product Name</th>-->
 
-								<th>Price</th>
-								<th>Remove</th>
+								<th>支付状态</th>
+								<th>支付</th>
 							</tr>
 						</thead>
 						<tbody>
+						<#list orderList as order>
 							<tr class="rem1">
-								<td class="invert">1</td>
-								<td class="invert-image"><a href="shop_single.html"><img src="/mall/images/mf2.jpg" alt=" " class="img-responsive"></a></td>
-								<td class="invert">
-									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value"><span>1</span></div>
-											<div class="entry value-plus active">&nbsp;</div>
-										</div>
-									</div>
-								</td>
-								<td class="invert">Book1</td>
+								<td class="invert">${order.getId()}</td>
 
-								<td class="invert">$100.00</td>
+								<!--<td class="invert">-->
+								<!--<div class="quantity">-->
+								<!--<div class="quantity-select">-->
+								<!--<div class="entry value-minus">&nbsp;</div>-->
+								<!--<div class="entry value"><span>1</span></div>-->
+								<!--<div class="entry value-plus active">&nbsp;</div>-->
+								<!--</div>-->
+								<!--</div>-->
+								<!--</td>-->
+								<td class="invert">${user.getName()!}</td>
+								<td class="invert">${order.getPname()}</td>
+								<td class="invert">${order.getValue()}</td>
+								<td class="invert">${order.getPayment()}</td>
 								<td class="invert">
-									<div class="rem">
-										<div class="close1"> </div>
-									</div>
-
-								</td>
-							</tr>
-							<tr class="rem2">
-								<td class="invert">2</td>
-								<td class="invert-image"><a href="shop_single.html"><img src="/mall/images/mf3.jpg" alt=" " class="img-responsive"></a></td>
-								<td class="invert">
-									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value"><span>1</span></div>
-											<div class="entry value-plus active">&nbsp;</div>
-										</div>
-									</div>
-								</td>
-								<td class="invert">Book2</td>
-
-								<td class="invert">$80.00</td>
-								<td class="invert">
-									<div class="rem">
-										<div class="close2"> </div>
-									</div>
+									<form action="${request.contextPath}/pay" method="post">
+										<input type="hidden" name="id" value="${order.getId()}">
+										<input type="hidden" name="cid" value="${order.getCid()}">
+										<input type="hidden" name="pid" value="${order.getPid()}">
+										<input type="hidden" name="cname" value="${order.getCname()}">
+										<input type="hidden" name="pname" value="${order.getPname()}">
+										<input type="hidden" name="value" value="${order.getValue()}">
+										<input type="hidden" name="payment" value="已支付">
+										<button type="submit" class="edu-cart pedu-cart"><i class="fa fa-cart-plus"
+																							aria-hidden="true"></i>支付
+										</button>
+									</form>
 
 								</td>
 							</tr>
-							<tr class="rem3">
-								<td class="invert">3</td>
-								<td class="invert-image"><a href="shop_single.html"><img src="/mall/images/mf6.jpg" alt=" " class="img-responsive"></a></td>
-								<td class="invert">
-									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value"><span>1</span></div>
-											<div class="entry value-plus active">&nbsp;</div>
-										</div>
-									</div>
-								</td>
-								<td class="invert">Book3</td>
-
-								<td class="invert">$30.00</td>
-								<td class="invert">
-									<div class="rem">
-										<div class="close3"> </div>
-									</div>
-
-								</td>
-							</tr>
+						</#list>
 
 						</tbody>
 					</table>
 				</div>
-				<div class="checkout-left">
-					<div class="col-md-4 checkout-left-basket">
-						<h4>Continue to basket</h4>
-						<ul>
-							<li>Book1 <i>-</i> <span>$100.00 </span></li>
-							<li>Book2 <i>-</i> <span>$80.00 </span></li>
-							<li>Book3 <i>-</i> <span>$30.00 </span></li>
-							<li>Total Service Charges <i>-</i> <span>$55.00</span></li>
-							<li>Total <i>-</i> <span>$265.00</span></li>
-						</ul>
-					</div>
-					<div class="col-md-8 address_form">
-						<h4>Add a new Details</h4>
-						<form action="payment.html" method="post" class="creditly-card-form shopf-sear-headinfo_form">
-							<section class="creditly-wrapper wrapper">
-								<div class="information-wrapper">
-									<div class="first-row form-group">
-										<div class="controls">
-											<label class="control-label">Full name: </label>
-											<input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
-										</div>
-										<div class="card_number_grids">
-											<div class="card_number_grid_left">
-												<div class="controls">
-													<label class="control-label">Mobile number:</label>
-													<input class="form-control" type="text" placeholder="Mobile number">
-												</div>
-											</div>
-											<div class="card_number_grid_right">
-												<div class="controls">
-													<label class="control-label">Landmark: </label>
-													<input class="form-control" type="text" placeholder="Landmark">
-												</div>
-											</div>
-											<div class="clear"> </div>
-										</div>
-										<div class="controls">
-											<label class="control-label">Town/City: </label>
-											<input class="form-control" type="text" placeholder="Town/City">
-										</div>
-										<div class="controls">
-											<label class="control-label">Address type: </label>
-											<select class="form-control option-fieldf">
-																							<option>Office</option>
-																							<option>Home</option>
-																							<option>Commercial</option>
-							
-																					</select>
-										</div>
-									</div>
-									<button class="submit check_out">Delivery to this Address</button>
-								</div>
-							</section>
-						</form>
-						<div class="checkout-right-basket">
-							<a href="payment.html">Make a Payment </a>
-						</div>
-					</div>
+
+
+				<!--<div class="checkout-left">-->
+				<!--<div class="col-md-4 checkout-left-basket">-->
+				<!--<h4>Continue to basket</h4>-->
+				<!--<ul>-->
+				<!--<li>Book1 <i>-</i> <span>$100.00 </span></li>-->
+				<!--<li>Book2 <i>-</i> <span>$80.00 </span></li>-->
+				<!--<li>Book3 <i>-</i> <span>$30.00 </span></li>-->
+				<!--<li>Total Service Charges <i>-</i> <span>$55.00</span></li>-->
+				<!--<li>Total <i>-</i> <span>$265.00</span></li>-->
+				<!--</ul>-->
+				<!--</div>-->
+				<!--<div class="col-md-8 address_form">-->
+				<!--<h4>Add a new Details</h4>-->
+				<!--<form action="payment.html" method="post" class="creditly-card-form shopf-sear-headinfo_form">-->
+				<!--<section class="creditly-wrapper wrapper">-->
+				<!--<div class="information-wrapper">-->
+				<!--<div class="first-row form-group">-->
+				<!--<div class="controls">-->
+				<!--<label class="control-label">Full name: </label>-->
+				<!--<input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">-->
+				<!--</div>-->
+				<!--<div class="card_number_grids">-->
+				<!--<div class="card_number_grid_left">-->
+				<!--<div class="controls">-->
+				<!--<label class="control-label">Mobile number:</label>-->
+				<!--<input class="form-control" type="text" placeholder="Mobile number">-->
+				<!--</div>-->
+				<!--</div>-->
+				<!--<div class="card_number_grid_right">-->
+				<!--<div class="controls">-->
+				<!--<label class="control-label">Landmark: </label>-->
+				<!--<input class="form-control" type="text" placeholder="Landmark">-->
+				<!--</div>-->
+				<!--</div>-->
+				<!--<div class="clear"> </div>-->
+				<!--</div>-->
+				<!--<div class="controls">-->
+				<!--<label class="control-label">Town/City: </label>-->
+				<!--<input class="form-control" type="text" placeholder="Town/City">-->
+				<!--</div>-->
+				<!--<div class="controls">-->
+				<!--<label class="control-label">Address type: </label>-->
+				<!--<select class="form-control option-fieldf">-->
+				<!--<option>Office</option>-->
+				<!--<option>Home</option>-->
+				<!--<option>Commercial</option>-->
+
+				<!--</select>-->
+				<!--</div>-->
+				<!--</div>-->
+				<!--<button class="submit check_out">Delivery to this Address</button>-->
+				<!--</div>-->
+				<!--</section>-->
+				<!--</form>-->
+				<!--<div class="checkout-right-basket">-->
+				<!--<a href="payment.html">Make a Payment </a>-->
+				<!--</div>-->
+				<!--</div>-->
 
 					<div class="clearfix"> </div>
 
@@ -260,17 +233,7 @@
 
 	<!-- Subscribe -->
     <!--div class="wthree-subscribef-w3ls"-->
-		<div class="container">
-			<h3 class="tittlef-agileits-w3layouts white-clrf">Sign up for our Newsletter</h3>
-			<p class="white-clrf">Recieve our latest news straight to your inbox</p>
-			<div class="footer_w3layouts_gridf_right">
 
-				<form action="#" method="post">
-					<input type="email" name="Email" placeholder="Email address..." required="">
-					<input type="submit" value="Submit">
-				</form>
-			</div>
-		</div>
 	</div>
 	<!--// Subscribe -->
 	<!-- footer -->
@@ -284,6 +247,18 @@
 	<!--// Common js -->
 	<!-- cart-js -->
 	<script src="/mall/js/minicart.js"></script>
+
+	<script>
+        function refresh() {
+            var flag = window.sessionStorage.getItem("flag");
+            console.log(flag);
+            if (!flag) {
+                settimeout(fn, 1000);
+                window.localStorage.setItem("flag", "true");
+            }
+        }
+	</script>
+
 	<script>
 		edu.render();
 

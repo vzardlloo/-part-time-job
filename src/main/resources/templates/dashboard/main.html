@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>神龙销售管理系统</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="/static/dashboard/images/favicon.ico" rel="shortcut icon">
@@ -193,7 +193,7 @@
         //监听工具条
         table.on('tool(product)', function (obj) {
 
-            var data = obj.data;
+            var data = obj.data
             if (obj.event === 'save') {
                 console.log(data);
                 //layer.msg('ID：'+ data.id + ' 的查看操作');
@@ -201,7 +201,7 @@
                 $.ajax({
                     type: 'POST',
                     url: '/dashboard/products',
-                    data: JSON.stringify(data),
+                    data: JSON.stringify(data.field),
                     dataType: 'json',
                     contentType: "application/json",
                     success: function () {
@@ -253,16 +253,16 @@
 
         var $ = layui.jquery;
 
-        //创建一个编辑器
-        var editIndex = layedit.build('LAY_demo_editor');
 
-        form.on('submit(*)',function (data) {
+        form.on('submit(pro)', function () {
+            var data = new FormData($("#product")[0]);
             $.ajax({
                 type: 'POST',
                 url: "/dashboard/products",
                 data: JSON.stringify(data.field),
                 dataType: 'json',
-                contentType: "application/json",
+                processData: false,
+                contentType: "multipart/form-data",
                 success: function () {
                     layer.msg("新建成功！", {icon: 6},function () {
                         refresh();

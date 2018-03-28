@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://m.lenovo.com.cn/buy/paysuccess.html?out_trade_no=# -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>支付成功</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport"
+          name="viewport">
+    <!--跳转--<meta http-equiv="refresh" content="5;url=http://shopt.lenovo.com.cn" />-->
+    <link href="css/header.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/car.css" rel="stylesheet" type="text/css">
+    <link href="css/buy.css" rel="stylesheet">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/touchwipe.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="js/pp-0.2.0_v20150909.min.js"></script>
+    <script src="js/common.js"></script>
+    <script type="text/javascript" src="#"></script>
+    <style type="text/css">
+        .pay {
+            background-color: #ffffff;
+            padding: 80px 0;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .pay ul {
+            padding-top: 30px;
+            padding-left: 50px;
+            text-align: left;
+            width: 400px;
+            margin: 0 auto;
+            list-style: none;
+            line-height: 25px;
+        }
+
+        .pay span {
+            padding: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var orderNo = $.getUrlParam("out_trade_no"),
+                money = $.getUrlParam("total_fee"),
+                detailUrl = $(".detail").attr("href") + "?ordno=";
+            $(".orderNo").html(orderNo);
+            if (money == "" || money == null) {
+                $("#money_no").css("display", "none");
+            } else {
+                $(".money").html(money);
+                $("#money_no").css("display", "block");
+            }
+            $(".detail").attr("href", detailUrl + orderNo);
+        })
+    </script>
+</head>
+<body>
+<header>
+    <div class="index_top table_box">
+        <ul>
+            <li class="top_left"><a href="javascript:history.go(-1)"><img class="hot_bt" src="image/back_bt.png"></a>
+            </li>
+            <li class="top_center"><b>支付成功</b></li>
+            <li class="top_right"><a id="list_bt" href="#"><img src="image/list_bt.png"></a></li>
+            <li class="search_input"><span><input type="text" placeholder="请输入关键字"></span></li>
+        </ul>
+    </div>
+
+</header>
+<section>
+    <div class="pay">
+        <div>
+            <img src="image/menu_ad.jpg" style="vertical-align:bottom;"><span
+                style=" color: #ff5400; font-family: 微软雅黑; font-size: 18px; font-weight: bold; ">支付成功！我们将尽快为您发货!</span>
+        </div>
+        <div style=" font-size: 14px; color: #5e5e5e;   font-family:黑体;">
+            <ul>
+                <li>订单号：<span class="orderNo" style="font-weight: bold;">${order.getId()}</span></li>
+                <li id="money_no">在线支付：<span class="money" style="font-weight: bold; color: #ff5400; ">${order.getValue()}</span>元
+                </li>
+            </ul>
+
+        </div>
+        <div style="font-size: 12px; padding-bottom: 5px; padding-top: 20px;">
+            <span style=" padding-left: 0px;"><a href="javascript:history.go(-1)"
+                                                 style="color: #39a6de;">继续逛逛</a> </span> | <span>
+
+            </span></div>
+    </div>
+    <hr style="border: 1px #efefef solid;">
+</section>
+
+
+<script type="text/javascript" src="js/s_code.js"></script>
+<script type="text/javascript">
+    monitor_setdefaultprop();
+    var s_code = s.t();
+    if (s_code) document.write(s_code)//--></script>
+<script language="JavaScript" type="text/javascript">
+    <!--
+    if (navigator.appVersion.indexOf('MSIE') >= 0) document.write(unescape('%3C') + '\!-' + '-')
+    //--></script>
+<audio controls="controls" style="display: none;"></audio>
+<script id="wappalyzer" src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
+</body>
+<style type="text/css">#yddContainer {
+    display: block;
+    font-family: Microsoft YaHei;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: -4px;
+    left: -4px;
+    font-size: 12px;
+    border: 1px solid
+}
+
+#yddTop {
+    display: block;
+    height: 22px
+}
+
+#yddTopBorderlr {
+    display: block;
+    position: static;
+    height: 17px;
+    padding: 2px 28px;
+    line-height: 17px;
+    font-size: 12px;
+    color: #5079bb;
+    font-weight: bold;
+    border-style: none solid;
+    border-width: 1px
+}
+
+#yddTopBorderlr .ydd-sp {
+    position: absolute;
+    top: 2px;
+    height: 0;
+    overflow: hidden
+}
+
+.ydd-icon {
+    left: 5px;
+    width: 17px;
+    padding: 0px 0px 0px 0px;
+    padding-top: 17px;
+    background-position: -16px -44px
+}
+
+.ydd-close {
+    right: 5px;
+    width: 16px;
+    padding-top: 16px;
+    background-position: left -44px
+}
+
+#yddKeyTitle {
+    float: left;
+    text-decoration: none
+}
+
+#yddMiddle {
+    display: block;
+    margin-bottom: 10px
+}
+
+.ydd-tabs {
+    display: block;
+    margin: 5px 0;
+    padding: 0 5px;
+    height: 18px;
+    border-bottom: 1px solid
+}
+
+.ydd-tab {
+    display: block;
+    float: left;
+    height: 18px;
+    margin: 0 5px -1px 0;
+    padding: 0 4px;
+    line-height: 18px;
+    border: 1px solid;
+    border-bottom: none
+}
+
+.ydd-trans-container {
+    display: block;
+    line-height: 160%
+}
+
+.ydd-trans-container a {
+    text-decoration: none;
+}
+
+#yddBottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    background-position: left -22px
+}
+
+.ydd-padding010 {
+    padding: 0 10px
+}
+
+#yddWrapper {
+    color: #252525;
+    z-index: 10001;
+    background: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);
+}
+
+#yddContainer {
+    background: #fff;
+    border-color: #4b7598
+}
+
+#yddTopBorderlr {
+    border-color: #f0f8fc
+}
+
+#yddWrapper .ydd-sp {
+    background-image: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)
+}
+
+#yddWrapper a, #yddWrapper a:hover, #yddWrapper a:visited {
+    color: #50799b
+}
+
+#yddWrapper .ydd-tabs {
+    color: #959595
+}
+
+.ydd-tabs, .ydd-tab {
+    background: #fff;
+    border-color: #d5e7f3
+}
+
+#yddBottom {
+    color: #363636
+}
+
+#yddWrapper {
+    min-width: 250px;
+    max-width: 400px;
+}</style>
+</html>
