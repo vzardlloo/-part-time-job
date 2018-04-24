@@ -44,28 +44,28 @@ public class ProductController {
 
     @RequestMapping(value = "/products",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseModel<Product> saveProduct(@RequestBody Product product, @RequestParam(value = "image") MultipartFile file) {
+    public ResponseModel<Product> saveProduct(@RequestBody Product product) {
         //MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
         //MultipartFile file = request.getFile("image");
-        try {
-            String rootPath = ResourceUtils.getURL("classpath:").getPath();
-
-            String uploadPath = rootPath + "/static/image/upload";
-            File uploadFileFold = new File(uploadPath);
-            if (!uploadFileFold.exists()) {
-                uploadFileFold.mkdirs();
-            }
-            File uploadFile = new File(uploadPath, file.getOriginalFilename());
-            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(uploadFile));
-            out.write(file.getBytes());
-            out.flush();
-            out.close();
-            String imagePath = uploadFile.getAbsolutePath();
-            product.setImage(imagePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("upload image success...");
+//        try {
+//            String rootPath = ResourceUtils.getURL("classpath:").getPath();
+//
+//            String uploadPath = rootPath + "/static/image/upload";
+//            File uploadFileFold = new File(uploadPath);
+//            if (!uploadFileFold.exists()) {
+//                uploadFileFold.mkdirs();
+//            }
+//            File uploadFile = new File(uploadPath, file.getOriginalFilename());
+//            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(uploadFile));
+//            out.write(file.getBytes());
+//            out.flush();
+//            out.close();
+//            String imagePath = uploadFile.getAbsolutePath();
+//            product.setImage(imagePath);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("upload image success...");
         Product product1 = productService.saveProduct(product);
         return ResponseModel.builder()
                 .code(0)
