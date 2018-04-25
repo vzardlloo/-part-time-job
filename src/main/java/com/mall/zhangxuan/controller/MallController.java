@@ -54,15 +54,7 @@ public class MallController {
     }
 
 
-    @RequestMapping(value = "/search/{name}", method = RequestMethod.GET)
-    public ModelAndView search(@RequestParam("name") String name, org.apache.catalina.servlet4preview.http.HttpServletRequest request) {
 
-        modelAndView.clear();
-        List<Product> products = products = productService.getProductsByName(name);
-        modelAndView.addObject("product", products);
-        modelAndView.setViewName("mall/index");
-        return modelAndView;
-    }
 
 
 
@@ -103,8 +95,8 @@ public class MallController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(HttpServletRequest request, Customer customer) {
-        ModelAndView modelAndView = new ModelAndView();
-
+        //ModelAndView modelAndView = new ModelAndView();
+        modelAndView.clear();
         HttpSession session = request.getSession();
 
         List<Message> messageList = messageRepository.findAll();
@@ -121,6 +113,8 @@ public class MallController {
         session.setAttribute("products", productList);
         modelAndView.addObject("msg", newMassage);
         modelAndView.addObject("product", productList);
+        List<Product> products = productService.getProducts();
+        modelAndView.addObject("hotproduct", products);
         //System.out.println(existCustomer.getName());
         if (existCustomer != null){
             session.setAttribute("currentUser", existCustomer);
