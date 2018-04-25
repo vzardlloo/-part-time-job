@@ -93,10 +93,34 @@ public class MallController {
         return "mall/payment";
     }
 
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView login(@RequestParam(value = "name", required = false) Optional<String> name) {
+
+        List<Product> productList;
+        if (name.equals(Optional.empty())) {
+            productList = productService.getProducts();
+        } else {
+            productList = productService.getProductsByName(name.get());
+
+        }
+
+        List<Product> products = productService.getProducts();
+        modelAndView.addObject("hotproduct", products);
+        modelAndView.addObject("product",productList);
+        modelAndView.setViewName("mall/index");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(HttpServletRequest request, Customer customer) {
         //ModelAndView modelAndView = new ModelAndView();
         modelAndView.clear();
+        List<Product> productList;
+
+        productList = productService.getProducts();
+
+
         HttpSession session = request.getSession();
 
         List<Message> messageList = messageRepository.findAll();
@@ -109,7 +133,7 @@ public class MallController {
         }
         System.out.println(newMassage.getTitle());
         Customer existCustomer = customerService.getCustomerByNameAndPassword(customer.getName(),customer.getPassword());
-        List<Product> productList = productService.getProducts();
+        //List<Product> productList = productService.getProducts();
         session.setAttribute("products", productList);
         modelAndView.addObject("msg", newMassage);
         modelAndView.addObject("product", productList);
