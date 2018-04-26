@@ -24,6 +24,11 @@ public class ShoppingCarService {
         return shoppingCar1;
     }
 
+    public List<ShoppingCar> getOrderList(String cid) {
+        List<ShoppingCar> shoppingCarList = shoppingCarRepository.getShoppingCarsByCid(cid);
+        return shoppingCarList;
+    }
+
     public List<ShoppingCar> getOrderList() {
         List<ShoppingCar> shoppingCarList = shoppingCarRepository.findAll();
         return shoppingCarList;

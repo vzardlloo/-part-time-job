@@ -154,25 +154,19 @@ public class MallController {
     @RequestMapping(value = "/car", method = RequestMethod.POST)
     public ModelAndView shoppingCar(ShoppingCar shoppingCar, HttpServletRequest request) {
         ShoppingCar shoppingCar1 = shoppingCarService.saveOrder(shoppingCar);
-        //List<ShoppingCar> shoppingCarList = shoppingCarService.getOrderList();
-        //Customer user = (Customer) request.getSession().getAttribute("currentUser");
+
         ModelAndView modelAndView = new ModelAndView("redirect:/checkout");
-        // modelAndView.addObject("orderList", shoppingCarList);
-        // if (user != null) {
-        // modelAndView.addObject("user", user);
-        // modelAndView.setViewName("/mall/checkout");
+
         return modelAndView;
-        //} else {
-        //modelAndView.setViewName("mall/to-login");
-        //return modelAndView;
-        //l;}
+
 
     }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
     public ModelAndView checkOut(HttpServletRequest request) {
-        List<ShoppingCar> shoppingCarList = shoppingCarService.getOrderList();
+
         Customer user = (Customer) request.getSession().getAttribute("currentUser");
+        List<ShoppingCar> shoppingCarList = shoppingCarService.getOrderList(user.getId().toString());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("orderList", shoppingCarList);
         if (user != null) {
@@ -192,8 +186,10 @@ public class MallController {
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseModel getOrders() {
-        List<ShoppingCar> shoppingCarList = shoppingCarService.getOrderList();
+    public ResponseModel getOrders(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        Customer customer = (Customer) httpSession.getAttribute("currentUser");
+        List<ShoppingCar> shoppingCarList = shoppingCarService.getOrderList(customer.getId().toString());
         return ResponseModel.builder()
                 .code(0)
                 .data(shoppingCarList)

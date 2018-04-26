@@ -1,6 +1,7 @@
 package com.mall.zhangxuan.service;
 
 import com.mall.zhangxuan.domain.Customer;
+import com.mall.zhangxuan.exception.ErrorException;
 import com.mall.zhangxuan.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,13 @@ public class CustomerService {
     }
 
     public Customer getCustomerByNameAndPassword(String name,String password){
-        return customerRepository.getCustomerByNameAndPassword(name, password);
+        return customerRepository.getCustomerByNameAndPassword(name, password).get(0);
     }
 
     public Customer savaCustomer(Customer customer){
+        if (getCustomerByNameAndPassword(customer.getName(), customer.getPassword()) != null) {
+            throw new ErrorException("already exit!");
+        }
         return customerRepository.save(customer);
     }
 
