@@ -20,7 +20,12 @@ public class CustomerService {
     }
 
     public Customer getCustomerByNameAndPassword(String name,String password){
-        return customerRepository.getCustomerByNameAndPassword(name, password).get(0);
+        if (customerRepository.getCustomerByNameAndPassword(name, password).size() > 0) {
+            return customerRepository.getCustomerByNameAndPassword(name, password).get(0);
+        } else {
+            return null;
+        }
+
     }
 
     public Customer savaCustomer(Customer customer){
