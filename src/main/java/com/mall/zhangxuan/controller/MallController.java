@@ -197,12 +197,20 @@ public class MallController {
     }
 
     @RequestMapping(value = "/pay", method = {RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView updateOrder(ShoppingCar shoppingCar) {
-        //shoppingCar.setPayment("已支付");
-        ShoppingCar shoppingCar1 = shoppingCarRepository.saveAndFlush(shoppingCar);
+    public ModelAndView updateOrder(@RequestParam("id") Integer id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("order", shoppingCar1);
-        modelAndView.setViewName("/mall/pay-success");
+        ShoppingCar shoppingCar = shoppingCarService.getShoppingCarById(id);
+        if (shoppingCar.getPayment().equals("已支付")) {
+            modelAndView.setViewName("/mall/pay-error");
+        } else {
+            shoppingCar.setPayment("已支付");
+            shoppingCarRepository.saveAndFlush(shoppingCar);
+
+            System.out.println(shoppingCar.getId());
+            System.out.println(shoppingCar.getValue());
+            modelAndView.addObject("order", shoppingCar);
+            modelAndView.setViewName("/mall/pay-success");
+        }
         return modelAndView;
     }
 

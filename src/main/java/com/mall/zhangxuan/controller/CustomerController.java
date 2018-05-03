@@ -3,6 +3,7 @@ package com.mall.zhangxuan.controller;
 
 import com.mall.zhangxuan.domain.Customer;
 import com.mall.zhangxuan.dto.ResponseModel;
+import com.mall.zhangxuan.repository.CustomerRepository;
 import com.mall.zhangxuan.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    CustomerRepository customerRepository;
+
     @ResponseBody
     @RequestMapping(value = "/customers",method = RequestMethod.GET)
     public ResponseModel<List<Customer>> getAllCustomers(){
@@ -32,7 +36,7 @@ public class CustomerController {
     @ResponseBody
     @RequestMapping(value = "/customers",method = RequestMethod.POST)
     public ResponseModel<Customer> saveCustomer(@RequestBody Customer customer){
-        Customer newcustomer = customerService.savaCustomer(customer);
+        Customer newcustomer = customerRepository.saveAndFlush(customer);
         return ResponseModel.builder()
                 .code(0)
                 .data(newcustomer)

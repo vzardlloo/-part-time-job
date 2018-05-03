@@ -18,6 +18,10 @@ public class ShoppingCarService {
         return shoppingCar1;
     }
 
+    public ShoppingCar getShoppingCarById(Integer id) {
+        return shoppingCarRepository.getShoppingCarById(id);
+    }
+
 
     public ShoppingCar updateOrder(ShoppingCar shoppingCar) {
         ShoppingCar shoppingCar1 = shoppingCarRepository.saveAndFlush(shoppingCar);

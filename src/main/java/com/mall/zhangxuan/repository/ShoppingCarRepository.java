@@ -10,4 +10,6 @@ public interface ShoppingCarRepository extends JpaRepository<ShoppingCar,Integer
 
 
     List<ShoppingCar> getShoppingCarsByCid(String cid);
+
+    ShoppingCar getShoppingCarById(Integer id);
 }

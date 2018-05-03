@@ -61,7 +61,7 @@
         <ul>
             <li class="top_left"><a href="javascript:history.go(-1)"><img class="hot_bt" src="image/back_bt.png"></a>
             </li>
-            <li class="top_center"><b>支付成功</b></li>
+            <li class="top_center"><b>支付失败</b></li>
         </ul>
     </div>
 
@@ -70,16 +70,9 @@
     <div class="pay">
         <div>
             <img src="image/menu_ad.jpg" style="vertical-align:bottom;"><span
-                style=" color: #ff5400; font-family: 微软雅黑; font-size: 18px; font-weight: bold; ">支付成功！我们将尽快为您发货!</span>
+                style=" color: #ff5400; font-family: 微软雅黑; font-size: 18px; font-weight: bold; ">支付失败！请检查是否已经支付和网络问题！</span>
         </div>
-        <div style=" font-size: 14px; color: #5e5e5e;   font-family:黑体;">
-            <ul>
-                <li>订单号：<span class="orderNo" style="font-weight: bold;">${order.getId()}</span></li>
-                <li id="money_no">在线支付：<span class="money" style="font-weight: bold; color: #ff5400; ">${order.getValue()}</span>元
-                </li>
-            </ul>
 
-        </div>
         <div style="font-size: 12px; padding-bottom: 5px; padding-top: 20px;">
             <span style=" padding-left: 0px;"><a href="javascript:history.go(-1)"
                                                  style="color: #39a6de;">继续逛逛</a> </span> | <span><a href="/mall"
