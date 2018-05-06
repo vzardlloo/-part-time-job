@@ -151,6 +151,19 @@ public class MallController {
         }
     }
 
+
+    @RequestMapping(value = "/mall-logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        httpSession.invalidate();
+        modelAndView.clear();
+        ModelAndView modelAndView = new ModelAndView("redirect:/mall");
+        //modelAndView.setViewName("mall/index");
+        return modelAndView;
+    }
+
+
+
     @RequestMapping(value = "/car", method = RequestMethod.POST)
     public ModelAndView shoppingCar(ShoppingCar shoppingCar, HttpServletRequest request) {
         ShoppingCar shoppingCar1 = shoppingCarService.saveOrder(shoppingCar);

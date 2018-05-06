@@ -138,8 +138,8 @@
 						<!-- tabs-info -->
 						<div class="main-topicsf">
 							<#list product as p>
-								<div class="col-md-3 col-sm-6 tabsf-w3-agileits-grids">
-                                    <img src="${p.getImage()}" alt=""/>
+                                <div class="col-md-3 col-sm-6 tabsf-w3-agileits-grids">
+                                    <img src="${p.getImage()}" alt="" width="300" height="200"/>
 									<div class="img-caption">
 
 									</div>
@@ -177,7 +177,8 @@
                                 <li class="col-md-3 col-sm-6 col-xs-6 mtrl-f-grids">
                                     <div class="fff">
                                         <div class="thumbnail">
-                                            <a href="#"><img src="${p.getImage()}" alt=""></a>
+                                            <img name="pic" src="${p.getImage()}" alt=""
+                                                 style="width: 300px;height: 200px">
                                             <p><span class="fa fa-hand-o-down" aria-hidden="true"></span>~hot~</p>
                                         </div>
                                         <div class="caption">
@@ -253,6 +254,21 @@
             });
 
         })
+
+        //        function setImg(w, h){
+        //            //alert("111");
+        //            //var imgList = document.getElementsByTagName('img');
+        //            var imgList = document.getElementsByName("pic");
+        //            for(var i=0;i<imgList.length;i++){
+        //               // alert("222");
+        //                if(imgList[i].width>w || imgList[i].height>h){
+        //                    imgList[i].width = w;
+        //                    imgList[i].heigth = h;
+        //                }
+        //            }
+        //        }
+        //        setImg(300,200);
+
 	</script>
 
 
