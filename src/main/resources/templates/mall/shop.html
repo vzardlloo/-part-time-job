@@ -74,11 +74,12 @@
                     <h3><a href="/index">神龙商城</a></h3>
 				</div>
 				<div class="searchf-w3-agileits-headr">
-					<form action="#" method="post">
-						<input type="search" name="Search" placeholder="Search for a Product..." required="">
-						<button type="submit" class="btn btn-default search" aria-label="Left Align">
-					<i class="fa fa-search" aria-hidden="true"> </i>
-				</button>
+					<form>
+						<input type="search" id="search" aria-placeholder="输入商品名称搜索..." name="name" placeholder=""
+							   required="">
+						<button class="btn btn-default search" id="btn-search" aria-label="Left Align">
+							<i class="fa fa-search" aria-hidden="true"> </i>
+						</button>
 					</form>
 				</div>
 				<div class="cart-mainf">
@@ -194,7 +195,17 @@
 	<!-- //footer -->
 
 	<!-- js -->
+	<script type="text/javascript">
+        $("#btn-search").click(function (event) {
+            console.log("click...");
+            var name = $("#search").val();
+            $.ajax({
+                type: "GET",
+                url: "/shop/" + name
+            });
 
+        })
+	</script>
 
 	<!-- Common js -->
 	<script type="text/javascript" src="/mall/js/jquery-2.1.4.min.js"></script>
