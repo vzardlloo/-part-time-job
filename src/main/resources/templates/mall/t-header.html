@@ -9,8 +9,9 @@
         <div class="header_right">
             <#if user??>
                 <a href="#" class="log" data-toggle="modal" data-target="#myModal">${user.getName()}</a>
+                <a href="#">&nbsp &nbsp退出</a>
                 <#else>
-                    <a href="#" class="log" data-toggle="modal" data-target="#myModal">登录/注册</a>
+                    <a href="/mall-logout" class="log" data-toggle="modal" data-target="#myModal">登录/注册</a>
 
             </#if>
         </div>

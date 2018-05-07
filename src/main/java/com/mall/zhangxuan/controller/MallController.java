@@ -59,12 +59,19 @@ public class MallController {
 
 
     @RequestMapping(value = "/shop",method = RequestMethod.GET)
-    public ModelAndView shop(HttpServletRequest request) {
+    public ModelAndView shop(HttpServletRequest request, @RequestParam(value = "name", required = false) Optional<String> name) {
         ModelAndView modelAndView = new ModelAndView();
         Customer user = (Customer) request.getSession().getAttribute("currentUser");
         if (user != null) {
             modelAndView.addObject("user", user);
-            modelAndView.addObject("product", request.getSession().getAttribute("products"));
+            List<Product> productList;
+            if (name.equals(Optional.empty())) {
+                productList = productService.getProducts();
+            } else {
+                productList = productService.getProductsByName(name.get());
+
+            }
+            modelAndView.addObject("product", productList);
             modelAndView.setViewName("mall/shop");
             return modelAndView;
         } else {
@@ -150,6 +157,19 @@ public class MallController {
             return modelAndView;
         }
     }
+
+
+    @RequestMapping(value = "/mall-logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        httpSession.invalidate();
+        modelAndView.clear();
+        ModelAndView modelAndView = new ModelAndView("redirect:/mall");
+        //modelAndView.setViewName("mall/index");
+        return modelAndView;
+    }
+
+
 
     @RequestMapping(value = "/car", method = RequestMethod.POST)
     public ModelAndView shoppingCar(ShoppingCar shoppingCar, HttpServletRequest request) {

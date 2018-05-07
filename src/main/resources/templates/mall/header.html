@@ -11,6 +11,7 @@
             <div class="header_right">
                 <#if user??>
                     <a href="#" class="log" data-toggle="modal" data-target="#myModal">${user.getName()}</a>
+                    <a href="/mall-logout">&nbsp &nbsp退出</a>
                     <#else>
                         <a href="#" class="log" data-toggle="modal" data-target="#myModal">登录/注册</a>
 
@@ -29,7 +30,8 @@
             <div class="searchf-w3-agileits-headr">
                 <form>
                     <input type="search" id="search" name="name" placeholder="" required="">
-                    <button class="btn btn-default search" id="btn-search" aria-label="Left Align">
+                    <button class="btn btn-default search" aria-placeholder="输入商品名称搜索..." id="btn-search"
+                            aria-label="Left Align">
                         <i class="fa fa-search" aria-hidden="true"> </i>
                     </button>
                 </form>
