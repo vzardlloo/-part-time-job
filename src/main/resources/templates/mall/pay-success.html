@@ -75,6 +75,8 @@
         <div style=" font-size: 14px; color: #5e5e5e;   font-family:黑体;">
             <ul>
                 <li>订单号：<span class="orderNo" style="font-weight: bold;">${order.getId()}</span></li>
+                <li>收货人：<span class="orderNo" style="font-weight: bold;">${user.getName()}</span></li>
+                <li>配送地址：<span class="orderNo" style="font-weight: bold;">${user.getLocation()}</span></li>
                 <li id="money_no">在线支付：<span class="money" style="font-weight: bold; color: #ff5400; ">${order.getValue()}</span>元
                 </li>
             </ul>

@@ -91,8 +91,13 @@ public class MallController {
 
     @RequestMapping(value = "/regist",method = RequestMethod.POST)
     public String regist(Customer customer){
-        Customer newcustomer = customerService.savaCustomer(customer);
+        Customer newcustomer = customerService.saveCustomer(customer);
         return "mall/regist";
+    }
+
+    @RequestMapping(value = "/car", method = RequestMethod.GET)
+    public String getShoppingCar() {
+        return "/mall/checkout";
     }
 
     @RequestMapping(value = "/payment.html",method = {RequestMethod.GET,RequestMethod.POST})
@@ -199,10 +204,7 @@ public class MallController {
         }
     }
 
-    @RequestMapping(value = "/car", method = RequestMethod.GET)
-    public String getShoppingCar() {
-        return "/mall/checkout";
-    }
+
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     @ResponseBody
@@ -217,18 +219,21 @@ public class MallController {
     }
 
     @RequestMapping(value = "/pay", method = {RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView updateOrder(@RequestParam("id") Integer id) {
+    public ModelAndView updateOrder(@RequestParam("id") Integer id, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
+        Customer user = (Customer) request.getSession().getAttribute("currentUser");
         ShoppingCar shoppingCar = shoppingCarService.getShoppingCarById(id);
         if (shoppingCar.getPayment().equals("已支付")) {
             modelAndView.setViewName("/mall/pay-error");
         } else {
             shoppingCar.setPayment("已支付");
             shoppingCarRepository.saveAndFlush(shoppingCar);
-
-            System.out.println(shoppingCar.getId());
-            System.out.println(shoppingCar.getValue());
+//            Integer scoreInt =  Integer.parseInt(user.getScore())+Integer.parseInt(shoppingCar.getValue());
+//            String  score = scoreInt.toString();
+//            user.setScore(score);
+//            customerService.saveCustomer(user);
             modelAndView.addObject("order", shoppingCar);
+            modelAndView.addObject("user", user);
             modelAndView.setViewName("/mall/pay-success");
         }
         return modelAndView;
