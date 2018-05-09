@@ -28,7 +28,7 @@ public class CustomerService {
 
     }
 
-    public Customer savaCustomer(Customer customer){
+    public Customer saveCustomer(Customer customer) {
         if (getCustomerByNameAndPassword(customer.getName(), customer.getPassword()) != null) {
             throw new ErrorException("already exit!");
         }

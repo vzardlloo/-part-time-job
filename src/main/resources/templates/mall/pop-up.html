@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                Sign In & Sign Up
+                登录 & 注册
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <section>
@@ -15,20 +15,21 @@
                             <div class="form">
                                 <h3>登录</h3>
                                 <form action="/login" method="post">
-                                    <input type="text" name="name" placeholder="Username" required="">
-                                    <input type="password" name="password" placeholder="Password" required="">
-                                    <input type="submit" value="Login">
+                                    <input type="text" name="name" placeholder="亲~输入您的用户名..." required="">
+                                    <input type="password" name="password" placeholder="亲~输入您的密码..." required="">
+                                    <input type="submit" value="登录">
                                 </form>
-                                <div class="cta"><a href="#">Forgot your password?</a></div>
                             </div>
                             <div class="form">
                                 <h3>注册</h3>
                                 <form id="register" action="/regist" method="post">
-                                    <input type="text" name="name" placeholder="Username" required="">
-                                    <input type="password" name="password" placeholder="Password" required="">
-                                    <input type="email" name="email" placeholder="Email address" required="">
-                                    <input type="text" name="phone" placeholder="Phone Number" required="">
-                                    <input type="submit" value="Register" >
+                                    <input type="text" name="name" placeholder="亲~输入您的用户名..." required="">
+                                    <input type="password" name="password" placeholder="亲~输入您的密码..." required="">
+                                    <input type="email" name="email" placeholder="亲~输入您的邮件..." required="">
+                                    <input type="text" name="phone" placeholder="亲~输入您的电话号码..." required="">
+                                    <input type="text" name="location" placeholder="亲~输入您的配送地址..." required="">
+                                    <input type="hidden" name="score" required="" value="0">
+                                    <input type="submit" value="注册">
                                 </form>
                             </div>
                         </div>
