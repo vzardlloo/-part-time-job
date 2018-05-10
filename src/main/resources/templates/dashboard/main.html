@@ -254,15 +254,14 @@
         var $ = layui.jquery;
 
 
-        form.on('submit(pro)', function () {
-            var data = new FormData($("#product")[0]);
+        form.on('submit(pro)', function (data) {
+            //var data = new FormData($("#product")[0]);
             $.ajax({
                 type: 'POST',
                 url: "/dashboard/products",
                 data: JSON.stringify(data.field),
                 dataType: 'json',
-                processData: false,
-                contentType: "multipart/form-data",
+                contentType: 'application/json',
                 success: function () {
                     layer.msg("新建成功！", {icon: 6},function () {
                         refresh();
@@ -387,7 +386,7 @@
                         url: '/dashboard/message',
                         data: JSON.stringify(data),
                         dataType: 'json',
-                        contentType: "application/json",
+                        contentType: 'application/json',
                         success: function (res) {
                             layer.msg("删除成功！", {icon: 6}, function () {
                                 refresh();

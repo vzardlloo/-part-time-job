@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class ProductService {
@@ -23,8 +24,10 @@ public class ProductService {
         List<Product> productList = productRepository.findAll();
         List<Product> products = new LinkedList<>();
         for (int i = 0; i < 8; i++) {
-            if (productList.get(i) != null) {
-                products.add(productList.get(i));
+            int idx = (int) (Math.random() * productList.size());
+            System.out.println(idx);
+            if (productList.get(idx) != null) {
+                products.add(productList.get(idx));
             }
         }
         return products;
