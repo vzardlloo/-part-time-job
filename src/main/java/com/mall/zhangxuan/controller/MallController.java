@@ -66,7 +66,7 @@ public class MallController {
             modelAndView.addObject("user", user);
             List<Product> productList;
             if (name.equals(Optional.empty())) {
-                productList = productService.getProducts();
+                productList = productService.getAllProducts();
             } else {
                 productList = productService.getProductsByName(name.get());
 
