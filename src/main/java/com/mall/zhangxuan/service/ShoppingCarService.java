@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ShoppingCarService {
@@ -31,6 +32,12 @@ public class ShoppingCarService {
     public List<ShoppingCar> getOrderList(String cid) {
         List<ShoppingCar> shoppingCarList = shoppingCarRepository.getShoppingCarsByCid(cid);
         return shoppingCarList;
+    }
+
+    public List<ShoppingCar> getUnCheckoutOrderList(String cid) {
+        List<ShoppingCar> shoppingCarList = shoppingCarRepository.getShoppingCarsByCid(cid);
+
+        return shoppingCarList.stream().filter(t -> t.getPayment().equals("未支付")).collect(Collectors.toList());
     }
 
     public List<ShoppingCar> getOrderList() {

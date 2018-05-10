@@ -188,10 +188,15 @@ public class MallController {
     }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
-    public ModelAndView checkOut(HttpServletRequest request) {
+    public ModelAndView checkOut(HttpServletRequest request, @RequestParam(value = "checkout", required = false) Optional<String> checkout) {
 
         Customer user = (Customer) request.getSession().getAttribute("currentUser");
-        List<ShoppingCar> shoppingCarList = shoppingCarService.getOrderList(user.getId().toString());
+        List<ShoppingCar> shoppingCarList;
+        if (checkout.equals(Optional.empty())) {
+            shoppingCarList = shoppingCarService.getOrderList(user.getId().toString());
+        } else {
+            shoppingCarList = shoppingCarService.getUnCheckoutOrderList(user.getId().toString());
+        }
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("orderList", shoppingCarList);
         if (user != null) {

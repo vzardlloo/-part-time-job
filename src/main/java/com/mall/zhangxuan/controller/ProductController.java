@@ -27,9 +27,6 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    // 文件存放服务端的位置
-
-
 
     @ResponseBody
     @RequestMapping(value = "/products",method = RequestMethod.GET)
