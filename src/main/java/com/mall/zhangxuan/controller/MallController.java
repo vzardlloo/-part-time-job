@@ -35,6 +35,12 @@ public class MallController {
 
     ModelAndView modelAndView = new ModelAndView();
 
+    /**
+     * 登陆前商城首页的一切功能
+     *
+     * @param name
+     * @return
+     */
     @RequestMapping(value = "/mall", method = RequestMethod.GET)
     public ModelAndView mall(@RequestParam(value = "name", required = false) Optional<String> name) {
         System.out.println(name);
@@ -86,6 +92,7 @@ public class MallController {
         modelAndView.addObject("user", request.getSession().getAttribute("currentUser"));
         modelAndView.addObject("product", request.getSession().getAttribute("products"));
         modelAndView.setViewName("mall/checkout");
+
         return modelAndView;
     }
 
@@ -188,7 +195,7 @@ public class MallController {
     }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
-    public ModelAndView checkOut(HttpServletRequest request, @RequestParam(value = "checkout", required = false) Optional<String> checkout) {
+    public ModelAndView checkout(HttpServletRequest request, @RequestParam(value = "checkout", required = false) Optional<String> checkout) {
 
         Customer user = (Customer) request.getSession().getAttribute("currentUser");
         List<ShoppingCar> shoppingCarList;
